@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            width: 100vw;
+            height: 50vh;
+            background-color: blueviolet;
+            text-align: center;
+            line-height: 50vh;
+            font-size: 20px;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container"></div>
+    <button id="btn">取消</button>
+    <script src="./utils.js"></script>
+    <script>
+        let container = document.getElementById("container")
+        let btn = document.getElementById("btn")
+        let count = 0;
+
+        let doSomething = debounce(() => {
+            container.innerHTML = count++
+        }, 100, false)
+
+        container.onmousemove = doSomething
+        btn.onclick = () => {
+            doSomething.cancel()
+        }
+
+        /* container.onmousemove = throttle(() => {
+            console.log(count++)
+        }, 1000) */
+    </script>
+</body>
+
+</html>
